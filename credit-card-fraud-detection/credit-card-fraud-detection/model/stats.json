@@ -1,0 +1,79 @@
+{
+  "total_transactions": 10000,
+  "normal_count": 9849,
+  "fraud_count": 151,
+  "fraud_percentage": 1.51,
+  "accuracy": 99.45,
+  "precision": 100.0,
+  "recall": 63.33,
+  "f1_score": 77.55,
+  "confusion_matrix": [
+    [
+      1970,
+      0
+    ],
+    [
+      11,
+      19
+    ]
+  ],
+  "feature_columns": [
+    "amount",
+    "transaction_hour",
+    "foreign_transaction",
+    "location_mismatch",
+    "device_trust_score",
+    "velocity_last_24h",
+    "cardholder_age",
+    "merchant_category"
+  ],
+  "numeric_columns": [
+    "amount",
+    "transaction_hour",
+    "foreign_transaction",
+    "location_mismatch",
+    "device_trust_score",
+    "velocity_last_24h",
+    "cardholder_age"
+  ],
+  "categorical_columns": [
+    "merchant_category"
+  ],
+  "merchant_category_options": [
+    "Clothing",
+    "Electronics",
+    "Food",
+    "Grocery",
+    "Travel"
+  ],
+  "feature_ranges": {
+    "amount": {
+      "min": 0.0,
+      "max": 1471.04
+    },
+    "transaction_hour": {
+      "min": 0.0,
+      "max": 23.0
+    },
+    "foreign_transaction": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "location_mismatch": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "device_trust_score": {
+      "min": 25.0,
+      "max": 99.0
+    },
+    "velocity_last_24h": {
+      "min": 0.0,
+      "max": 9.0
+    },
+    "cardholder_age": {
+      "min": 18.0,
+      "max": 69.0
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Fraud Watch &mdash; Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <h1>Model &amp; dataset dashboard</h1>
+    <p class="lede">Statistics computed from the training dataset and the held-out test set.</p>
+
+    <div class="metric-grid">
+        <div class="metric-card">
+            <p class="metric-label">Total transactions</p>
+            <p class="metric-value">{{ "{:,}".format(stats.total_transactions) }}</p>
+        </div>
+        <div class="metric-card">
+            <p class="metric-label">Normal transactions</p>
+            <p class="metric-value">{{ "{:,}".format(stats.normal_count) }}</p>
+        </div>
+        <div class="metric-card">
+            <p class="metric-label">Fraud transactions</p>
+            <p class="metric-value">{{ "{:,}".format(stats.fraud_count) }}</p>
+        </div>
+        <div class="metric-card">
+            <p class="metric-label">Fraud percentage</p>
+            <p class="metric-value">{{ stats.fraud_percentage }}%</p>
+        </div>
+    </div>
+
+    <h2>Model performance</h2>
+    <div class="metric-grid">
+        <div class="metric-card metric-card-alt">
+            <p class="metric-label">Accuracy</p>
+            <p class="metric-value">{{ stats.accuracy }}%</p>
+        </div>
+        <div class="metric-card metric-card-alt">
+            <p class="metric-label">Precision</p>
+            <p class="metric-value">{{ stats.precision }}%</p>
+        </div>
+        <div class="metric-card metric-card-alt">
+            <p class="metric-label">Recall</p>
+            <p class="metric-value">{{ stats.recall }}%</p>
+        </div>
+        <div class="metric-card metric-card-alt">
+            <p class="metric-label">F1-score</p>
+            <p class="metric-value">{{ stats.f1_score }}%</p>
+        </div>
+    </div>
+
+    <div class="dashboard-row">
+        <div class="chart-block">
+            <h2>Normal vs. fraud transactions</h2>
+            <canvas id="classChart" width="360" height="260"
+                    data-normal="{{ stats.normal_count }}"
+                    data-fraud="{{ stats.fraud_count }}"></canvas>
+        </div>
+
+        <div class="chart-block">
+            <h2>Confusion matrix (test set)</h2>
+            <table class="confusion-matrix">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Predicted normal</th>
+                        <th>Predicted fraud</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Actual normal</th>
+                        <td class="cm-correct">{{ stats.confusion_matrix[0][0] }}</td>
+                        <td>{{ stats.confusion_matrix[0][1] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Actual fraud</th>
+                        <td>{{ stats.confusion_matrix[1][0] }}</td>
+                        <td class="cm-correct">{{ stats.confusion_matrix[1][1] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="hint">Diagonal cells (highlighted) are correct predictions.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

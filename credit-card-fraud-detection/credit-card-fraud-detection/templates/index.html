@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Fraud Watch &mdash; Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <h1>Spot suspicious transactions before they cause damage.</h1>
+        <p class="lede">
+            Fraud Watch is a machine-learning demo that looks at the details of a
+            transaction &mdash; amount, time, merchant type, device trust, and a few
+            behavioural signals &mdash; and estimates how likely it is to be fraud.
+            It's trained on a synthetic, anonymized dataset built for learning, not
+            on real card numbers or personal data.
+        </p>
+        <div class="hero-actions">
+            <a href="{{ url_for('detect') }}" class="btn btn-primary">Check a transaction</a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-ghost">View model dashboard</a>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <p class="panel-label">How scoring works</p>
+        <ol class="how-list">
+            <li>
+                <span class="how-index">1</span>
+                <div>
+                    <strong>Enter transaction details</strong>
+                    <p>Amount, hour, merchant category, and a handful of risk signals.</p>
+                </div>
+            </li>
+            <li>
+                <span class="how-index">2</span>
+                <div>
+                    <strong>The model scores the transaction</strong>
+                    <p>A Random Forest classifier trained on 10,000 past transactions.</p>
+                </div>
+            </li>
+            <li>
+                <span class="how-index">3</span>
+                <div>
+                    <strong>You get a risk percentage</strong>
+                    <p>Normal or Fraud, with a probability score and a short explanation.</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="explainer">
+    <h2>What is credit card fraud detection?</h2>
+    <p>
+        Credit card fraud detection is the process of identifying transactions
+        that don't match a customer's usual spending behaviour &mdash; an unusually
+        large purchase, a transaction from an unfamiliar location, or activity at
+        an odd hour. Banks use statistical models to flag these transactions for
+        review in real time. This project recreates that idea at a small scale:
+        a supervised classification model learns patterns from labeled past
+        transactions (normal vs. fraud) and applies them to new transactions to
+        estimate a risk score.
+    </p>
+</section>
+{% endblock %}

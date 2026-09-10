@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Fraud Watch &mdash; Check a transaction{% endblock %}
+
+{% block content %}
+<section class="form-section">
+    <div class="form-intro">
+        <h1>Check a transaction</h1>
+        <p>Fill in the transaction details below. These fields match the columns the model was trained on.</p>
+    </div>
+
+    {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form action="{{ url_for('detect') }}" method="POST" class="detect-form">
+
+        <div class="field-grid">
+            <div class="field">
+                <label for="amount">Transaction amount ($)</label>
+                <input type="number" step="0.01" min="0" id="amount" name="amount"
+                       placeholder="e.g. 250.00" required>
+                <span class="hint">Typical range in training data: ${{ feature_ranges.amount.min }} &ndash; ${{ feature_ranges.amount.max }}</span>
+            </div>
+
+            <div class="field">
+                <label for="transaction_hour">Hour of day (0&ndash;23)</label>
+                <input type="number" step="1" min="0" max="23" id="transaction_hour"
+                       name="transaction_hour" placeholder="e.g. 14" required>
+                <span class="hint">24-hour clock &mdash; 0 = midnight, 14 = 2 PM</span>
+            </div>
+
+            <div class="field">
+                <label for="merchant_category">Merchant category</label>
+                <select id="merchant_category" name="merchant_category" required>
+                    {% for option in merchant_options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="cardholder_age">Cardholder age</label>
+                <input type="number" step="1" min="18" max="100" id="cardholder_age"
+                       name="cardholder_age" placeholder="e.g. 35" required>
+            </div>
+
+            <div class="field">
+                <label for="foreign_transaction">Foreign transaction?</label>
+                <select id="foreign_transaction" name="foreign_transaction" required>
+                    <option value="0">No &mdash; domestic</option>
+                    <option value="1">Yes &mdash; made abroad</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="location_mismatch">Location mismatch?</label>
+                <select id="location_mismatch" name="location_mismatch" required>
+                    <option value="0">No &mdash; matches usual location</option>
+                    <option value="1">Yes &mdash; different from usual location</option>
+                </select>
+                <span class="hint">Does the transaction location differ from where the cardholder usually shops?</span>
+            </div>
+
+            <div class="field">
+                <label for="device_trust_score">Device trust score (25&ndash;99)</label>
+                <input type="range" min="25" max="99" value="70" id="device_trust_score"
+                       name="device_trust_score" oninput="document.getElementById('trust-out').textContent = this.value">
+                <span class="hint">Higher = a more familiar, trusted device. Current value: <strong id="trust-out">70</strong></span>
+            </div>
+
+            <div class="field">
+                <label for="velocity_last_24h">Transactions in the last 24 hours</label>
+                <input type="number" step="1" min="0" max="20" id="velocity_last_24h"
+                       name="velocity_last_24h" placeholder="e.g. 2" required>
+                <span class="hint">How many card transactions happened in the past day?</span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-wide">Detect fraud</button>
+    </form>
+</section>
+{% endblock %}

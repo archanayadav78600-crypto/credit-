@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Fraud Watch &mdash; Result{% endblock %}
+
+{% block content %}
+<section class="result-section">
+    <div class="result-card {{ 'result-fraud' if result.is_fraud else 'result-normal' }}">
+        <p class="result-label">Prediction</p>
+        <h1 class="result-verdict">{{ result.prediction }}</h1>
+
+        <div class="risk-meter">
+            <div class="risk-track">
+                <div class="risk-fill" style="width: {{ result.risk_percentage }}%;"></div>
+            </div>
+            <p class="risk-value">{{ result.risk_percentage }}% estimated fraud risk</p>
+        </div>
+
+        <p class="result-message">
+            {% if result.is_fraud %}
+                This transaction has patterns similar to past fraudulent
+                transactions in the training data &mdash; things like unusual
+                amount, timing, or trust signals. In a real system, this would
+                be flagged for manual review or a verification step.
+            {% else %}
+                This transaction looks consistent with normal spending patterns
+                seen in the training data. No red flags were strong enough to
+                raise the fraud score.
+            {% endif %}
+        </p>
+
+        <details class="submitted-values">
+            <summary>Values you submitted</summary>
+            <table>
+                {% for key, value in result.submitted_values.items() %}
+                <tr>
+                    <td>{{ key.replace('_', ' ') | capitalize }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </details>
+
+        <a href="{{ url_for('detect') }}" class="btn btn-ghost">Check another transaction</a>
+    </div>
+</section>
+{% endblock %}

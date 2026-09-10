@@ -1,0 +1,450 @@
+/* ---------------------------------------------------------
+   Design tokens
+--------------------------------------------------------- */
+:root {
+    --ink: #101826;
+    --ink-soft: #3d4a5f;
+    --paper: #EEF1F6;
+    --panel: #ffffff;
+    --panel-alt: #F7F5EF;
+    --border: #D7DCE5;
+    --accent: #2C3E9E;
+    --accent-dark: #1F2C73;
+    --accent-soft: #E3E7F8;
+    --danger: #B3261E;
+    --danger-soft: #FBEAE9;
+    --safe: #146C43;
+    --safe-soft: #E7F5EC;
+
+    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+}
+
+h1, h2, h3 { font-weight: 600; margin-top: 0; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+
+p { color: var(--ink-soft); }
+
+a { color: var(--accent); }
+
+/* ---------------------------------------------------------
+   Top navigation
+--------------------------------------------------------- */
+.topbar {
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.75rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+}
+
+/* ---------------------------------------------------------
+   Layout
+--------------------------------------------------------- */
+.page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+}
+
+.footer p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    opacity: 0.8;
+}
+
+/* ---------------------------------------------------------
+   Buttons
+--------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover { background: var(--accent-dark); }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-ghost:hover { background: var(--accent-soft); }
+
+.btn-wide { width: 100%; text-align: center; }
+
+/* ---------------------------------------------------------
+   Home page
+--------------------------------------------------------- */
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
+}
+
+.hero-text h1 { margin-bottom: 1rem; }
+
+.lede { font-size: 1.05rem; max-width: 46ch; }
+
+.hero-actions {
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+}
+
+.hero-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.panel-label {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+}
+
+.how-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.how-list li {
+    display: flex;
+    gap: 0.9rem;
+}
+
+.how-list p { margin: 0.15rem 0 0; font-size: 0.9rem; }
+.how-list strong { font-size: 0.95rem; }
+
+.how-index {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.explainer {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+    max-width: 70ch;
+}
+
+/* ---------------------------------------------------------
+   Detection form
+--------------------------------------------------------- */
+.form-intro { max-width: 60ch; margin-bottom: 1.75rem; }
+
+.detect-form {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.field label { font-weight: 600; font-size: 0.9rem; }
+
+.field input,
+.field select {
+    padding: 0.6rem 0.7rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.field input[type="range"] { padding: 0; }
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.hint { font-size: 0.8rem; color: var(--ink-soft); opacity: 0.85; }
+
+.alert {
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background: var(--danger-soft);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+/* ---------------------------------------------------------
+   Result page
+--------------------------------------------------------- */
+.result-section { display: flex; justify-content: center; }
+
+.result-card {
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 2.25rem;
+    max-width: 560px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-top: 6px solid var(--border);
+}
+
+.result-fraud { border-top-color: var(--danger); }
+.result-normal { border-top-color: var(--safe); }
+
+.result-label {
+    text-transform: none;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0;
+}
+
+.result-verdict {
+    font-size: 2.4rem;
+    margin: 0.25rem 0 1.5rem;
+}
+
+.result-fraud .result-verdict { color: var(--danger); }
+.result-normal .result-verdict { color: var(--safe); }
+
+.risk-meter { margin-bottom: 1.5rem; }
+
+.risk-track {
+    height: 12px;
+    border-radius: 999px;
+    background: var(--panel-alt);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.risk-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--safe), var(--danger));
+}
+
+.risk-value {
+    margin: 0.6rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--ink);
+}
+
+.result-message { font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+.submitted-values {
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.submitted-values summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.submitted-values table { width: 100%; border-collapse: collapse; }
+
+.submitted-values td {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-soft);
+}
+
+.submitted-values td:last-child {
+    text-align: right;
+    font-family: var(--font-mono);
+    color: var(--ink);
+}
+
+/* ---------------------------------------------------------
+   Dashboard
+--------------------------------------------------------- */
+.dashboard h2 { margin-top: 2.5rem; }
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metric-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+}
+
+.metric-card-alt { background: var(--accent-soft); border-color: var(--accent-soft); }
+
+.metric-label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.4rem;
+}
+
+.metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+}
+
+.dashboard-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    align-items: start;
+}
+
+.chart-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+canvas { max-width: 100%; }
+
+.confusion-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.confusion-matrix th,
+.confusion-matrix td {
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.confusion-matrix th { color: var(--ink-soft); font-weight: 600; font-size: 0.82rem; }
+
+.cm-correct {
+    background: var(--safe-soft);
+    color: var(--safe);
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; }
+    .field-grid { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-row { grid-template-columns: 1fr; }
+    .nav-links { gap: 1rem; }
+}
